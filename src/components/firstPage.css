@@ -1,11 +1,11 @@
-div {
+.form-div {
     margin: 3%;
     border-radius: 10px;
     text-align: left;
 
 }
 
-div label {
+label {
     color: wheat;
     text-align: center;
 }
@@ -42,16 +42,31 @@ input {
     align-items: center;
 }
 
+.delete {
+    background-color: chocolate;
+    border: none;
+}
+
+.card-header {
+    text-align: right;
+    margin-top: 0.25em;
+}
+
 .card {
     font-style: italic;
     box-shadow: 0 4em 8em 0 rgb(26, 25, 25);
     padding: 0.2em;
     width: 30em;
-    text-align: left;
+    text-align: justify;
     background-color: chocolate;
+    font-size: larger;
+    margin: 3%;
+    padding-bottom: 1em;
+    border-radius: 10px;
 }
 
 div p {
     margin: 0.5em;
-    color: rgb(3, 54, 3);
+    color: rgb(1, 8, 1);
+    font-weight: light;
 }
