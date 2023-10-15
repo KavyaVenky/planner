@@ -7,6 +7,8 @@ function FirstPage() {
     currenttime = new Date().toDateString();
     const [date, setNewDate] = useState('');
     const [task, setTask] = useState('');
+    const [count, setCount] = useState(0);
+
     const [taskArray, setTaskArray] = useState([]);
 
     function obtainDate(event){
@@ -19,7 +21,8 @@ function FirstPage() {
 
     function handleSubmit(event){
         event.preventDefault();
-        const data = {date, task};
+        setCount(count+1);
+        const data = {count, date, task};
         if (date && task){
             setTaskArray((t) => [...taskArray, data]);
         }
@@ -28,9 +31,10 @@ function FirstPage() {
         console.log("task array elements", taskArray);
     }
 
-    function handleDelete(event){
-        taskArray.splice(event.target.value, 1);
-        setTaskArray((ls) => [...ls, taskArray]);
+    function handleDelete(index){
+        setTaskArray(ls => {
+            return ls.filter(l => l.count !== index)
+        });
     }
 
     return(
@@ -44,12 +48,12 @@ function FirstPage() {
             </div>            
         </form>
         
-        {taskArray.map((t, ind) => {
+        {taskArray.map((t) => {
             if(t.task && t.date){
                 return(
-                    <div key={ind} className="card">   
+                    <div key={t.count} className="card">   
                         <div className="card-header">
-                            <button style={{backgroundColor:"chocolate", border:"none"}} value={ind} onClick={handleDelete}><FaTrash className="delete" size={22}/></button>
+                            <button style={{backgroundColor:"chocolate", border:"none"}} onClick={() => handleDelete(t.count)}><FaTrash className="delete" size={22}/></button>
                         </div>                 
                         <p>Task name: {t.task}</p>
                         <p>Date: {t.date}</p>
